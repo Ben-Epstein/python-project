@@ -2,7 +2,7 @@
 A clean, extensible, python project template, built using [Makefile](https://www.gnu.org/software/make/manual/make.html), [ruff](https://github.com/astral-sh/ruff), and [uv](https://github.com/astral-sh/uv).
 
 ## Why?
-Python tooling moves really fast, and python package management is notoriously difficult. How do you resolve dependencies, do you need a lockfile, how can you quickly test your configurations and ensure everything works as expected locally and in production?
+Python tooling moves really fast, and python package management is notoriously difficult. How do you resolve dependencies, do you need a lockfile, how can you quickly test your configurations and ensure everything works as expected locally and in production are common and important questions.
 
 There's no definitive answer to this, but I like the idea of a system that is lightweight and lets you move really quickly.
 
