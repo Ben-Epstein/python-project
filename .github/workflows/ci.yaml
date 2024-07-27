@@ -25,6 +25,7 @@ jobs:
           resolution: ${{ matrix.resolution }}
       
       - name: lint
+        if: ${{ matrix.resolution != 'lowest' }}
         run: make lint
       
       - name: test

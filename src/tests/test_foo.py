@@ -1,7 +1,8 @@
 """Test for Foo."""
 
-from api.main import health
 from fastapi.testclient import TestClient
+
+from api.main import health
 
 
 def test_foo(my_object: dict[str, int]) -> None:

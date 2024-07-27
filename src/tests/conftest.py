@@ -1,10 +1,11 @@
 """Fixtures and such."""
 
 from typing import Iterator
-from fastapi.testclient import TestClient
-from api.main import app
 
 import pytest
+from fastapi.testclient import TestClient
+
+from api.main import app
 
 
 @pytest.fixture(autouse=True, scope="function")
@@ -19,4 +20,5 @@ def my_object() -> Iterator[dict[str, int]]:
 
 @pytest.fixture(scope="function")
 def client() -> Iterator[TestClient]:
+    """Test Client."""
     yield TestClient(app)

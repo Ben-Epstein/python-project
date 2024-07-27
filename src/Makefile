@@ -23,7 +23,7 @@ setup-lowest:
 	make setup lowest=1
 
 .PHONY: lint
-lint:
+lint: setup
 	uv --quiet run ruff check .
 	uv --quiet run ruff format --check
 	uv --quiet run mypy .
