@@ -51,7 +51,16 @@ There's no `cd.yaml` workflow, which could either
 
 Because those are pretty easy to find on the internet, and not specifically releavant to the goals of this repo.
 
-## Setting up the automated comment for invalid lockfiles
+## Usage
+See the readme in [src](./src) for usage details.
+
+## Examples
+I've left 2 PRs open to showcase differing behavior:
+* PR that is all good. Packages are aligned, new functionality that is tested, and test coverage across a matrix of configurations: [link](https://github.com/Ben-Epstein/python-project/pull/3)
+* PR that adds a package but doesn't update the lockfile, which causes a failed PR test and an automated comment to the PR telling the author to run `make lock`: [link](https://github.com/Ben-Epstein/python-project/pull/4)
+
+
+## More: Setting up the automated comment for invalid lockfiles
 This is a few steps, so if you're interested, screenshots are here. I can't figure out how to do this with the Github CLI, but feel free to open a PR with those instructions:
 <details><summary>Setup a PAT for leaving PR comments</summary>
 
@@ -70,11 +79,4 @@ This is a few steps, so if you're interested, screenshots are here. I can't figu
   Name the secret "COMMENT_TOKEN", and paste the pat, exactly as you copied it, into the body.
 
 </details>
-
-
-See the readme in [src](./src) for usage details.
-
-I've left 2 PRs open to showcase differing behavior:
-* PR that is all good. Packages are aligned, new functionality that is tested, and test coverage across a matrix of configurations: [link](https://github.com/Ben-Epstein/python-project/pull/3)
-* PR that adds a package but doesn't update the lockfile, which causes a failed PR test and an automated comment to the PR telling the author to run `make lock`: [link](https://github.com/Ben-Epstein/python-project/pull/4)
 
