@@ -17,11 +17,19 @@ There are many kinds of python-based repos, but two pretty common ones are:
 1. an SDK (ie installed by others)
 2. an API/Servie/Pipeline (internal, only installed by the creators).
 
+### SDK
 An SDK needs to be as flexible as reasonable with their dependencies. Lots of people (hopefully) will be building with their repo, so the repo should have as loose of dependencies as can reasonably be tested. In this case, in my opinion, a lockfile is not required, and testing as wide a range of dependencies is suggested (ie testing your code with lower and upper bounds of each dependency).
 
+For this, we have the CI run tests for 2 cases:
+1. Installing all dependencies at the low-end of their pins
+2. Installing all dependencies at the high-end of their pins
+
+This ensures everything is as compatible as we can reasonably confirm
+
+### API
 An API/Internal repo, that's perhaps built into a docker image and deployed, is in some ways the opposite. You don't need wide ranges, because no one else is installing it. In this case, a lockfile is critical, ensuring that the code you write and test in dev is identical to the code you run in prod. 
 
-In either case, this repo does leverage a lockfile, which can be turned on or off with the workflow. 
+For this, we have a lockfile that we validate on every PR to main, ensuring that no new packages have been added to the `pyproject.toml`, making the lockfile out of date.
 
 ## Tools
 
@@ -32,3 +40,17 @@ We try to keep the tools to a minimum, with exceptions for massively increasing 
 * mypy: Standard type-safety checking for python.
 * github actions: all CI/CD
 
+There's no `cd.yaml` workflow, which could either
+* deploy an image
+* deploy a package to pypi
+* deploy a cloud function
+* ...
+
+Because those are pretty easy to find on the internet, and not specifically releavant to this repo.
+
+## Setting up the automated comment for invalid lockfiles
+This is a few steps, so if you're interested, screenshots are here 
+
+See the readme in [src](./src) for usage details.
+
+You can see an example of a PR that adds a package but doesn't update the lockfile, which causes a failed PR test and an automated comment to the PR telling the author to run `make lock`
