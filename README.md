@@ -74,4 +74,7 @@ This is a few steps, so if you're interested, screenshots are here. I can't figu
 
 See the readme in [src](./src) for usage details.
 
-You can see an example of a PR that adds a package but doesn't update the lockfile, which causes a failed PR test and an automated comment to the PR telling the author to run `make lock`
+I've left 2 PRs open to showcase differing behavior:
+* PR that is all good. Packages are aligned, new functionality that is tested, and test coverage across a matrix of configurations: [link](https://github.com/Ben-Epstein/python-project/pull/3)
+* PR that adds a package but doesn't update the lockfile, which causes a failed PR test and an automated comment to the PR telling the author to run `make lock`: [link](https://github.com/Ben-Epstein/python-project/pull/4)
+
