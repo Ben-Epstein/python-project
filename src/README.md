@@ -11,9 +11,8 @@ We use `uv` as our python package manager.
 To access `python` and `pip` directly, you can `source .venv/bin/activate`. This is also where your 
 interpreter is for the IDE (`.venv/bin/python`).
 
-Otherwise, you can use `uv` to run your tools. Like `uv tool run ipython` for a shell. It will
-automatically install any deps temporarily, start the process, and then uninstall them to keep your virtual
-env clean.
+Otherwise, you can use `uv` to run your packages, `uv run pytest ...` to run pytest. If a package does not exist, use `uv tool`, like `uv tool run ipython` for a shell. It will
+automatically install any deps temporarily, start the process, and then uninstall them to keep your virtual env clean.
 
 ## Python setup
 
