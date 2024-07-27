@@ -11,10 +11,12 @@ jobs:
       matrix:
         working-directory: [ './src' ]
         python-version: ['3.12', '3.11', '3.10']
+        resolution: ['', 'lowest']
     defaults:
       run:
         working-directory: ${{ matrix.working-directory }}
         python-version: ${{ matrix.python-version }}
+        resolution: ${{ matrix.resolution }}
     steps:
       - uses: actions/checkout@v4
       
@@ -22,8 +24,10 @@ jobs:
         with:
           working-directory: ${{ matrix.working-directory }}
           python-version: ${{ matrix.python-version }}
+          resolution: ${{ matrix.resolution }}
       
       - name: lint
         run: make lint
-      # - name: test :) 
-      #   run: make test
+      
+      - name: test
+        run: make test

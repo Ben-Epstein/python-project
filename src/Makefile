@@ -11,37 +11,47 @@ setup:
 		echo "UV not installed or .venv does not exist, running uv"; \
 		make uv; \
 	fi
-	@if [ ! -f "requirements.dev.lock" ]; then \
+	@if [ ! -f "requirements.dev.lock" ] || [ ! -f "requirements-lowest.lock" ]; then \
 		echo "Can't find lockfile. Locking"; \
 		make lock; \
 	fi
-	uv pip install -r requirements.dev.lock
+	uv pip install -r $(if $(lowest),requirements-lowest.lock,requirements.dev.lock)
 	uv pip install --no-deps -e .
 
+.PHONY: setup-lowest
+setup-lowest:
+	make setup lowest=1
+
 .PHONY: lint
-lint: setup
-	uv tool --quiet run ruff check .
-	uv tool --quiet run ruff format --check
-	uv tool --quiet run mypy .
+lint:
+	uv --quiet run ruff check .
+	uv --quiet run ruff format --check
+	uv --quiet run mypy .
 
 .PHONY: test
-test: setup
-	uv tool --quiet run pytest --cov-config=.coveragerc --cov=src --cov=test --cov-fail-under=85 --cov-branch
+test:
+	uv --quiet run pytest tests --cov=api --cov=tests --cov-fail-under=85 --cov-branch tests
 
 .PHONY: format
 format: setup
-	uv tool --quiet run ruff format .
-	uv tool --quiet run ruff check --fix .
+	uv --quiet run ruff format .
+	uv --quiet run ruff check --fix .
 
 .PHONY: lock
 lock:
 	uv pip compile --output-file requirements.lock pyproject.toml --generate-hashes --quiet
 	uv pip compile --output-file requirements.dev.lock pyproject.toml --generate-hashes --all-extras --quiet
+	uv pip compile --resolution=lowest --output-file requirements-lowest.lock pyproject.toml --generate-hashes --all-extras --quiet
+
 
 .PHONY: sync
 sync: lock setup
-	uv pip sync requirements.dev.lock
+	uv pip sync $(if $(lowest),requirements-lowest.lock,requirements.dev.lock)
 	uv pip install --no-deps .
+
+.PHONY: sync-lowest
+sync-lowest: lock setup-lowest
+	make sync lowest=1
 
 .PHONY: api
 api: setup
