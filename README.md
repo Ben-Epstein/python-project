@@ -1,5 +1,5 @@
 # python-project
-A clean, extensible, python project template, build using [Makefile](https://www.gnu.org/software/make/manual/make.html), [ruff](https://github.com/astral-sh/ruff), and [uv](https://github.com/astral-sh/uv).
+A clean, extensible, python project template, built using [Makefile](https://www.gnu.org/software/make/manual/make.html), [ruff](https://github.com/astral-sh/ruff), and [uv](https://github.com/astral-sh/uv).
 
 ## Why?
 Python tooling moves really fast, and python package management is notoriously difficult. How do you resolve dependencies, do you need a lockfile, how can you quickly test your configurations and ensure everything works as expected locally and in production?
