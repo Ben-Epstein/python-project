@@ -10,7 +10,7 @@ dynamic = ["version"]
 readme = "README.md"
 license = {text = 'Apache 2.0'}
 description = "Python Project"
-requires-python = ">=3.12"
+requires-python = ">=3.10"
 dependencies = [
     "fastapi >=0.111.0, <1.0",
     "sqlmodel >=0.0.18, <0.1.0",
