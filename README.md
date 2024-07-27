@@ -49,7 +49,7 @@ There's no `cd.yaml` workflow, which could either
 * deploy a cloud function
 * ...
 
-Because those are pretty easy to find on the internet, and not specifically releavant to this repo.
+Because those are pretty easy to find on the internet, and not specifically releavant to the goals of this repo.
 
 ## Setting up the automated comment for invalid lockfiles
 This is a few steps, so if you're interested, screenshots are here. I can't figure out how to do this with the Github CLI, but feel free to open a PR with those instructions:
