@@ -7,9 +7,11 @@ anyio==3.4.0 \
     #   httpcore
     #   starlette
     #   watchfiles
-certifi==0.0.1 \
-    --hash=sha256:a6f0d79b2b63a43c71bc128929be3a17bdf5d0a5f74208d7ad9563b3bf8210e9
+certifi==2024.2.2 \
+    --hash=sha256:0569859f95fc761b18b45ef421b1290a0f65f147e92a1e5eb3e635f9a5e4e66f \
+    --hash=sha256:dc383c07b76109f368f6106eee2b593b04a011ea4d55f652c6ca24a754d1cdd1
     # via
+    #   api (pyproject.toml)
     #   httpcore
     #   httpx
 click==8.0.0 \
