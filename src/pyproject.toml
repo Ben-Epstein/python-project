@@ -23,7 +23,7 @@ email = "ben.epstein97@gmail.com"
 dev = [
     "coverage >=6.1.1",
     "mypy >=1.10, <2",
-    "pytest >=8.2, >9",
+    "pytest >=8.2, <9",
     "pytest-cov >=5.0.0, <6",
     "ruff >=0.4.5, <5",
 ]
