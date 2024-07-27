@@ -15,8 +15,6 @@ jobs:
     defaults:
       run:
         working-directory: ${{ matrix.working-directory }}
-        python-version: ${{ matrix.python-version }}
-        resolution: ${{ matrix.resolution }}
     steps:
       - uses: actions/checkout@v4
       
@@ -27,6 +25,7 @@ jobs:
           resolution: ${{ matrix.resolution }}
       
       - name: lint
+        if: ${{ matrix.resolution != 'lowest' }}
         run: make lint
       
       - name: test

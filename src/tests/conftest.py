@@ -3,6 +3,9 @@
 from typing import Iterator
 
 import pytest
+from fastapi.testclient import TestClient
+
+from api.main import app
 
 
 @pytest.fixture(autouse=True, scope="function")
@@ -13,3 +16,9 @@ def my_object() -> Iterator[dict[str, int]]:
     finally:
         # cleanup
         pass
+
+
+@pytest.fixture(scope="function")
+def client() -> Iterator[TestClient]:
+    """Test Client."""
+    yield TestClient(app)

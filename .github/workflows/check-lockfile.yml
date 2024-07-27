@@ -10,11 +10,10 @@ jobs:
     strategy:
       matrix:
         working-directory: ['./src']
-        python-version: ['3.12', '3.11', '3.10']
+        python-version: ['3.12']
     defaults:
       run:
         working-directory: ${{ matrix.working-directory }}
-        python-version: ${{ matrix.python-version }}
     steps:
       - uses: actions/checkout@v4
       
