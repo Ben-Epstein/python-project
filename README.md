@@ -27,7 +27,7 @@ For this, we have the CI run tests for 2 cases:
 This ensures everything is as compatible as we can reasonably confirm.
 
 **NOTE**: The installation of `lowest` dependencies can be tricky to set up at first. Many project don't pin any lowest supported version, so it goes back to 0.0.0, or some version released in 2017 that truly isn't compatible. You'll need to add more packages to your `pyproject.toml`. This is probably long-term good,
-ensuring a more stable setup, but if it's causing more pain than it's worth, you can always comment it out of the matrix in [ci.yaml]()
+ensuring a more stable setup, but if it's causing more pain than it's worth, you can always comment it out of the matrix in [ci.yaml](https://github.com/Ben-Epstein/python-project/blob/main/.github/workflows/ci.yaml#L14)
 
 ### API
 An API/Internal repo, that's perhaps built into a docker image and deployed, is in some ways the opposite. You don't need wide ranges, because no one else is installing it. In this case, a lockfile is critical, ensuring that the code you write and test in dev is identical to the code you run in prod. 
