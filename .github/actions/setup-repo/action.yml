@@ -10,6 +10,10 @@ inputs:
     required: false
     default: '3.12'
 
+  resolution:
+    required: false
+    default: ''
+
 runs:
   using: composite
   steps:
@@ -26,5 +30,10 @@ runs:
     - name: Setup repo
       shell: bash
       working-directory: ${{ inputs.working-directory }}
-      run: make setup
+      run: |
+        if [ "${{ inputs.resolution }}" = "lowest" ]; then
+          make setup-lowest
+        else
+          make setup
+        fi
       
