@@ -395,6 +395,7 @@ pydantic==2.8.2 \
     --hash=sha256:6f62c13d067b0755ad1c21a34bdd06c0c12625a22b0fc09c6b149816604f7c2a \
     --hash=sha256:73ee9fddd406dc318b885c7a2eab8a6472b68b8fb5ba8150949fc3db939f23c8
     # via
+    #   api (pyproject.toml)
     #   fastapi
     #   sqlmodel
 pydantic-core==2.20.1 \
