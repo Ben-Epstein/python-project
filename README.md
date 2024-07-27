@@ -49,7 +49,25 @@ There's no `cd.yaml` workflow, which could either
 Because those are pretty easy to find on the internet, and not specifically releavant to this repo.
 
 ## Setting up the automated comment for invalid lockfiles
-This is a few steps, so if you're interested, screenshots are here 
+This is a few steps, so if you're interested, screenshots are here. I can't figure out how to do this with the Github CLI, but feel free to open a PR with those instructions:
+<details><summary>Setup a PAT for leaving PR comments</summary>
+
+  Go to your github settings -> developer settings -> Personal Access Tokens -> Fine-grained tokens, or click [here](https://github.com/settings/tokens?type=beta)
+  Fill in the sections with the details of your token, such as name, experiation date, etc. Pick your repo, and set the "Pull requests" permission, under "Repository Permissions" to read/write:
+  <img width="717" alt="image" src="https://github.com/user-attachments/assets/c341943f-bdfb-47e2-8cbc-64549a58103e">
+
+  Click "Generate Token" at the bottom. Copy the token, because you won't see it again.
+
+  Now, go to your repo, click "Settings" at the top, then "Secrets and variables":
+  <img width="544" alt="image" src="https://github.com/user-attachments/assets/ca68abfc-218f-41e5-b347-51d4a830452c">
+
+  Then click "Actions", and then "New repository secret":
+  <img width="874" alt="image" src="https://github.com/user-attachments/assets/26d76604-1a2a-43d6-ba80-eb836c806305">
+
+  Name the secret "COMMENT_TOKEN", and paste the pat, exactly as you copied it, into the body.
+
+</details>
+
 
 See the readme in [src](./src) for usage details.
 
