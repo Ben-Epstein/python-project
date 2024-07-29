@@ -61,7 +61,11 @@ I've left 2 PRs open to showcase differing behavior:
 
 
 ## More: Setting up the automated comment for invalid lockfiles
-This is a few steps, so if you're interested, screenshots are here. I can't figure out how to do this with the Github CLI, but feel free to open a PR with those instructions:
+This is a few steps, so if you're interested, screenshots are here. 
+
+This is entirely optional, and you can just have the test fail, without posting the PR comment, by removing [this code](https://github.com/Ben-Epstein/python-project/blob/main/.github/workflows/check-lockfile.yml#L29-L44).
+
+I can't figure out how to do this with the Github CLI, but feel free to open a PR with those instructions:
 <details><summary>Setup a PAT for leaving PR comments</summary>
 
   Go to your github settings -> developer settings -> Personal Access Tokens -> Fine-grained tokens, or click [here](https://github.com/settings/tokens?type=beta)
