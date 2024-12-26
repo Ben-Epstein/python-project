@@ -2,7 +2,7 @@ export PYTHONPATH = .venv
 
 .PHONY: uv
 uv:
-	pip install uv==0.2.3
+	pip install --upgrade 'uv>=0.5.6,<0.6'
 	uv venv
 
 .PHONY: setup
@@ -11,16 +11,17 @@ setup:
 		echo "UV not installed or .venv does not exist, running uv"; \
 		make uv; \
 	fi
-	@if [ ! -f "requirements.dev.lock" ] || [ ! -f "requirements-lowest.lock" ]; then \
+	@if [ ! -f "uv.lock" ]; then \
 		echo "Can't find lockfile. Locking"; \
-		make lock; \
+		uv lock; \
 	fi
-	uv pip install -r $(if $(lowest),requirements-lowest.lock,requirements.dev.lock)
+	uv sync --all-extras --all-groups
 	uv pip install --no-deps -e .
 
-.PHONY: setup-lowest
-setup-lowest:
-	make setup lowest=1
+.PHONY: format
+format: setup
+	uv --quiet run ruff format .
+	uv --quiet run ruff check --fix .
 
 .PHONY: lint
 lint: setup
@@ -28,31 +29,6 @@ lint: setup
 	uv --quiet run ruff format --check
 	uv --quiet run mypy .
 
-.PHONY: test
-test:
-	uv --quiet run pytest tests --cov=api --cov=tests --cov-fail-under=85 --cov-branch tests
-
-.PHONY: format
-format: setup
-	uv --quiet run ruff format .
-	uv --quiet run ruff check --fix .
-
-.PHONY: lock
-lock:
-	uv pip compile --output-file requirements.lock pyproject.toml --generate-hashes --quiet
-	uv pip compile --output-file requirements.dev.lock pyproject.toml --generate-hashes --all-extras --quiet
-	uv pip compile --resolution=lowest --output-file requirements-lowest.lock pyproject.toml --generate-hashes --all-extras --quiet
-
-
-.PHONY: sync
-sync: lock setup
-	uv pip sync $(if $(lowest),requirements-lowest.lock,requirements.dev.lock)
-	uv pip install --no-deps .
-
-.PHONY: sync-lowest
-sync-lowest: lock setup-lowest
-	make sync lowest=1
-
 .PHONY: api
 api: setup
-	fastapi dev api/main.py 
+	uv run fastapi dev api/main.py 
