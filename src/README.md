@@ -16,12 +16,7 @@ automatically install any deps temporarily, start the process, and then uninstal
 
 ## Python setup
 
-We use `uv` to manage packages, but it's not a totally complete tool yet. So we manage our lockfile
-a bit manually. Here's how.
-
-### Installing packages
-`uv` doesn't have a `uv add` yet, so simply add the package to the pyproject.toml and run `make sync`. This will install 
-the package and update the lock file
+We use `uv` to manage packages. Similar to poetry, `uv` has a `uv add`, so simply run `uv add [your package]` to install the package and update the lock file.
 
 You cannot accidentally push a bad change to main, because during the PR, a check will be made to see if the `requirements.lock` 
 and `requirements.dev.lock` are in sync with pyproject.toml. It will fail the PR test if not.
